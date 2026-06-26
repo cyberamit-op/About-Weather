@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Web App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dark">
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <h1 class="title">Weather Web App</h1>
+        <p class="subtitle">Search cities, save favorites, and explore dynamic forecasts.</p>
+      </div>
+      <div class="controls">
+        <button id="theme-toggle" class="toggle-group" type="button">Light mode</button>
+        <div class="toggle-group" role="group" aria-label="Temperature units">
+          <button type="button" data-unit="metric" class="active">°C</button>
+          <button type="button" data-unit="imperial">°F</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="card search-panel">
+      <form id="city-form">
+        <div class="search-row">
+          <input id="city-input" type="text" placeholder="Enter city name" aria-label="City search" />
+          <button type="submit">Search</button>
+        </div>
+        <div class="search-actions">
+          <button id="location-btn" type="button">Use current location</button>
+          <button id="favorite-btn" type="button">Save city</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="weather-card" class="card weather-current bg-clear">
+      <div class="weather-current">
+        <div class="top">
+          <div class="location">
+            <h2 id="current-city">Weather details</h2>
+            <p id="current-date">Loading today...</p>
+          </div>
+          <div class="today-temp">
+            <p id="current-temp" class="temp-value">--°</p>
+          </div>
+        </div>
+
+        <div class="weather-info">
+          <img id="weather-icon" src="https://openweathermap.org/img/wn/01d@4x.png" alt="Weather icon" />
+          <div class="condition">
+            <strong id="current-description">Searching weather...</strong>
+            <div class="stats-grid">
+              <div class="stat">
+                <span class="stat-label">Feels like</span>
+                <span id="feels-like" class="stat-value">--°</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Humidity</span>
+                <span id="humidity" class="stat-value">--%</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Wind</span>
+                <span id="wind-speed" class="stat-value">--</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Visibility</span>
+                <span id="visibility" class="stat-value">--</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat">
+            <span class="stat-label">Sunrise</span>
+            <span id="sunrise" class="stat-value">--:--</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Sunset</span>
+            <span id="sunset" class="stat-value">--:--</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card forecast-panel">
+      <div class="section-title">
+        <h3>12-hour Forecast</h3>
+        <span class="muted-text">Today</span>
+      </div>
+      <div id="hourly-list" class="hourly-list"></div>
+    </section>
+
+    <section class="card forecast-panel">
+      <div class="section-title">
+        <h3>5-Day Forecast</h3>
+        <button type="button" onclick="document.querySelector('#city-input').focus();">Search more</button>
+      </div>
+      <div id="daily-list" class="daily-list"></div>
+    </section>
+
+    <section class="card favorites-panel">
+      <div class="section-title">
+        <h3>Favorite Cities</h3>
+      </div>
+      <div id="favorites-list" class="favorites-list"></div>
+    </section>
+
+    <section class="card history-panel">
+      <div class="section-title">
+        <h3>Search History</h3>
+      </div>
+      <div id="history-list" class="history-list"></div>
+    </section>
+  </div>
+
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-spinner"></div>
+      <p>Loading weather data…</p>
+    </div>
+  </div>
+
+  <div id="feedback" class="feedback" role="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
